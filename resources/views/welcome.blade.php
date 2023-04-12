@@ -13,13 +13,10 @@
     <!-- Styles -->
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-        html {
-            line-height: 1.15;
-            -webkit-text-size-adjust: 100%
-        }
-
+ 
         body {
-            margin: 0
+            margin: 0;
+            margin-top: -12px;
         }
 
         a {
@@ -42,10 +39,7 @@
             border: 0 solid #e2e8f0
         }
 
-        a {
-            color: inherit;
-            text-decoration: inherit
-        }
+    
 
         svg,
         video {
@@ -395,14 +389,13 @@
                 color: rgba(107, 114, 128, var(--tw-text-opacity))
             }
         }
-        }
+     
 
     </style>
 
     <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
+       
+        @media only screen and (max-width: 480px){ .AT-alert-card{left: 18px!important;} } .AT-alert-card { position: fixed; left: 55px; bottom: 20px; background-color: #f2f2f2; padding: 32px 15px 22px 32px; border-radius: 15px; box-shadow: 0 4px 12px 0 rgba(9,32,76,.05); display: flex; align-items: center; max-width: 600px; min-width: 280px; color: #000000; overflow: hidden; z-index: 50; height: auto;box-shadow: 0 10px 20px 0 rgba(30,30,30,.1); } .text-layer{ display: flex; width: auto; } .text-layer span{ display:block; font-size:25px; padding-left: 12px; font-weight:700; } .flex{ flex-direction: row; flex-wrap: wrap; margin-top:12px; } .flex a.btn--subtle{ background: #ffffff; color:#000; padding:5px 12px;margin-right: 12px; font-size: 12px;box-shadow: 0 10px 20px 0 rgba(30,30,30,.1); } .flex a.btn--primary{ background: blue; color:#fff; padding:5px 12px; font-size: 12px;box-shadow: 0 10px 20px 0 rgba(30,30,30,.1);} .sub-text{ display: block; font-size:16px; margin-top: 12px } .text-layer svg{ display: block; height: 36px; width: 36px; margin-top: -4px; } .AT-alert-card-close { z-index: 1;position: absolute; top: 4px; right: 8px; display: flex; height: 36px; width: 36px; transition: .3s;} .AT-alert-card-close svg { width: 32px; height: 32px; fill: #000; }
 
     </style>
 </head>
@@ -436,7 +429,32 @@
                     </g>
                 </svg>
             </div>
-            <h1 style="text-align: center;color:white"> simple customer support web application</h1>
+            <h1 style="text-align: center;color:white">customer support  application</h1>
+            <h2 style="text-align: center;color:white">IAM EST Salé </h2>
+
+        </div>
+        <div>   
+            
+            @auth
+                @else
+                <div class='AT-alert-card' id='at746427'>
+                    <div class='AT-alert-card-close' onclick='document.getElementById("at746427").style.display="none"'><svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><path d='M278.6 256l68.2-68.2c6.2-6.2 6.2-16.4 0-22.6-6.2-6.2-16.4-6.2-22.6 0L256 233.4l-68.2-68.2c-6.2-6.2-16.4-6.2-22.6 0-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3l68.2 68.2-68.2 68.2c-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3 6.2 6.2 16.4 6.2 22.6 0l68.2-68.2 68.2 68.2c6.2 6.2 16.4 6.2 22.6 0 6.2-6.2 6.2-16.4 0-22.6L278.6 256z'/></svg></div>
+                    <div class='text-component'>
+                        <div class='text-layer'>
+                                  <svg aria-hidden='true' class='iconsvg' viewBox='0 0 48 48'><path d='M46.019,38.447,26.566,6.309a3,3,0,0,0-5.132,0L1.982,38.447A3,3,0,0,0,4.548,43h38.9a3,3,0,0,0,2.568-4.553Z' fill='#ffd633' opacity='0.5'/><g fill='#222'><polygon points='25.757 16.182 25.481 31.725 22.53 31.725 22.252 16.182 25.757 16.182'/><circle cx='24' cy='36' r='2'/></g></svg>
+                          <span>This is an important message</span></div>
+                        <p class='sub-text'>In order to test the application after running the seeders, you can use the following pre-defined credentials to log in: </p>
+                                
+                                <a href="{{route("prelogin","admin")}}">click to log as admin</a> <br> 
+                                <a href="{{route("prelogin","customer")}}">click to log as cutomer</a>
+                             <div class='flex'>
+                               <a class='btn--subtle' onclick='document.getElementById("at746427").style.display="none"' href="#" >close</a>
+                               <a class='btn--primary' href='/login'>Login</a>
+                             </div>
+                      </div>
+                    </div>
+            @endauth
+      
         </div>
         
     </div>

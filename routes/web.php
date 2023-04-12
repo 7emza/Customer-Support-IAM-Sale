@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('info','You added new items, follow next step!');
+    ;
 });
+Route::get('/prelogin/{type?}',function ($type=null)
+{
+
+    if (Auth::check()) {
+
+        return redirect()->route("dashboard");
+    }
+    $pwd="password";
+ 
+    return view('auth.login')->with("preuser","$type@estsale")->with("pwd","$pwd");
+})->name('prelogin');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
