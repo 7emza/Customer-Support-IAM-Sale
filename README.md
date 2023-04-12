@@ -1,29 +1,58 @@
 **Customer Support Web Application
-**This is a simple customer support web application that allows customers to submit and manage their issues. It has the following requirements:
+Customer Support Web Application
+This is a simple customer support web application that allows customers to submit and manage issues. The application has two modules; the customer management module and the admin management module.
 
-The customer must have an interface where he can submit/display issues.
-The issues can have different status (Submitted, In Progress, Resolved, Closed).
-The customer can display issue details.
-When a customer submits an issue (status submitted), he must receive an email.
-When an admin changes an issue status, the customer must receive an email notification (Submitted, in progress, resolved, Closed).
-The admin must have the full ability to manage the issues (display/show/edit/change status).
-The customer can change only the issue status to closed, so in this case, all admins must receive an email notification.
-Architecture
-This project consists of two modules:
+##Requirements
+php: "^7.3|^8.0"
+laravel: "^8.54"
+MySQL or any other compatible database management system
+Composer
 
-Customer management module
-Admin management module
-How to Run the Project
-To run this project, follow these steps:
+##How to Run the Project
+ 1-Clone the repository :
+ 
+```ruby
+    git clone https://github.com/your-username/your-repository.git
+```
+2-Install dependencies:
+```ruby
+composer install
+```
 
-Clone the repository to your local machine using git clone.
-Install the dependencies using composer install and npm install.
-Create a .env file from the .env.example file and update the configuration settings.
-Run the database migrations using php artisan migrate.
-Seed the database using php artisan db:seed.
-Start the application using php artisan serve.
-For more information, please refer to the project documentation.
+3-Create a new database and configure the database connection in the .env file.
 
-[links here] - add any necessary links here, such as documentation or other resources.
+4-Migrate the database tables:
 
-Note: Make sure to have a mail server set up to test the email notifications.
+```ruby
+php artisan migrate
+```
+
+5-Seed the database with initial data:
+```ruby
+php artisan db:seed
+```
+
+5-Generate a new application key:
+```ruby
+php artisan key:generate
+```
+
+7-Start the application:
+ 
+```ruby
+php artisan serve
+```
+
+# The application should now be running at http://localhost:8000.
+
+**Features**
+Customers can submit and manage issues through a user interface.
+Issues can have different statuses (Submitted, In Progress, Resolved, Closed).
+Customers can display issue details.
+Customers receive an email when they submit an issue (status submitted).
+Customers receive an email notification when an admin changes the status of an issue (Submitted, In Progress, Resolved, Closed).
+Admins can manage issues by displaying, editing, and changing the status of issues.
+Customers can only change the status of an issue to Closed, which sends an email notification to all admins.
+
+##Architecture
+The application is built using Laravel 8.x and follows the Model-View-Controller (MVC) architecture. It consists of two main modules: the customer management module and the admin management module. The customer management module allows customers to submit and manage issues, while the admin management module allows admins to manage issues by displaying, editing, and changing the status of issues.
