@@ -31,6 +31,14 @@ class DatabaseSeeder extends Seeder
         (Permission::where('name', 'change status')->first()) ?: Permission::create(['name' => 'change status']);
 
 
+        // (User::where('email', "hamza.driouch@uit.ac.ma")->first()) ?: User::create([
+        //     'name' => 'System Admin',
+        //     'email'    => 'hamza.driouch@uit.ac.ma',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('password'),
+        //     'remember_token' => Str::random(10),
+        // ]);
+
         (User::where('email', "admin@estsale")->first()) ?: User::create([
             'name' => 'customer support',
             'email'    => 'admin@estsale',
@@ -59,9 +67,9 @@ class DatabaseSeeder extends Seeder
         //assing roles
         // User::where('email', '=', 'admin@estsale')->first()->assignRole('sys-admin');
 
-        User::where('email', '=', 'admin@estsale')->first()->assignRole('admin');
-        User::where('email', '=', 'customer@estsale')->first()->assignRole('customer');
+        User::where('email', 'admin@estsale')->first()->assignRole('admin');
+        User::where('email', 'customer@estsale')->first()->assignRole('customer');
 
-        User::where('email', '=', 'hamza.driouch@uit.ac.ma')->first()->assignRole('sys-admin');
+        // User::where('email', 'hamza.driouch@uit.ac.ma')->first()->assignRole('sys-admin');
     }
 }

@@ -65,14 +65,18 @@ class AdminManagementModule extends Component
 
     public function apply()
     {
+        $issue=  Issue::find($this->idtomakeChange);
+        if($this->status == "Delete"){
+           $issue->delete();
+        }else {
+            $issue->update([
+                  'admin_id'=>auth()->user()->id,
+                  'status'=> $this->status,
+                  'subject'=>$this->subject,
+                  'details'=>$this->details,
+            ]);
+        }
         
-      $issue=  Issue::find($this->idtomakeChange);
-      $issue->update([
-            'admin_id'=>auth()->user()->id,
-            'status'=> $this->status,
-            'subject'=>$this->subject,
-            'details'=>$this->details,
-      ]);
          
         Mail::to(User::find($issue->user_id)->email)
         ->send(new mailsupport(

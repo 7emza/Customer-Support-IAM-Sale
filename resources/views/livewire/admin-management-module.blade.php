@@ -29,7 +29,7 @@
                         </thead>
                         <tbody class="bg-white ">
                             @isset($issues)
-                                @foreach ($issues as $key => $issue)
+                                @forelse ($issues as $key => $issue)
                                     <tr class="text-gray-700">
                                         <td class=" p-2 border">
                                             <div class=" w-60 flex items-center text-sm">
@@ -53,7 +53,8 @@
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @empty
+                                 @endforelse
                             @endisset
                         </tbody>
                     </table>
@@ -130,8 +131,10 @@
 
                 <label for="details" class="block py-2">
                     <h1 class="text-gray-700 text-2xl">menage this issue </h1>
-
+                    @isset($issue)
+                        
                     created_at {{ Carbon\Carbon::parse($issue->created_at)->format('M m, Y') }}
+                    @endisset
 
                 </label>
                 <hr>
@@ -150,6 +153,7 @@
                     <option value="In Progress">In Progress</option>
                     <option value="Resolved">Resolved</option>
                     <option value="Closed">Closed</option>
+                    <option value="Delete">Delete</option>
                 </select>
             </div>
         </x-slot>
