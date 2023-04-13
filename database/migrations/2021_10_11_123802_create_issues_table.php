@@ -29,6 +29,8 @@ class CreateIssuesTable extends Migration
 
             $table->timestamps();
         });
+
+
     }
 
     /**
