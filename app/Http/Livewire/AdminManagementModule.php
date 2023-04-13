@@ -13,12 +13,13 @@ class AdminManagementModule extends Component
 {
     public $details;
     public $subject;
+    public $message;
 
     public $adminname;
     public $adminemail;
     public $adminpassword;
 
-    // create admins 
+    // create admins
     // not asked ,just for test mail
     public function addadmin()
     {
@@ -44,13 +45,13 @@ class AdminManagementModule extends Component
         $this->details="";
         $this->subject="";
     }
-    
- 
+
+
     public $issues;
     public $status;
     public $isdispaly=false;
- 
-  
+
+
     public $idtomakeChange;
     public function display($id)
     {
@@ -74,10 +75,11 @@ class AdminManagementModule extends Component
                   'status'=> $this->status,
                   'subject'=>$this->subject,
                   'details'=>$this->details,
+                  'message'=>$this->message
             ]);
         }
-        
-         
+
+
         Mail::to(User::find($issue->user_id)->email)
         ->send(new mailsupport(
             'Your issue [' .$this->subject.'] '.$this->status ,

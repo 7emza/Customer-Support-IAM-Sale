@@ -22,10 +22,11 @@ class CreateIssuesTable extends Migration
             $table->enum('status',['Submitted', 'In Progress', 'Resolved', 'Closed']);
             $table->string('subject');
             $table->longText('details');
-            
+            $table->longText('message')->nullable();
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade')->onUpdate('cascade');
-            
+
             $table->timestamps();
         });
     }

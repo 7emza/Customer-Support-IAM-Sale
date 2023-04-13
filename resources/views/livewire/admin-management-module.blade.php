@@ -13,7 +13,7 @@
             </div>
             <div class="p-5"></div>
 
-            <div class=" shadow  border-b border-gray-200 sm:rounded-lg  overflow-x-hidden " style="height: 65vh;">
+            <div class="   border-b border-gray-200 sm:rounded-lg  overflow-x-hidden " style="height: 65vh;">
 
                 <div class="w-full overflow-x-auto">
                     <table id="myTable" class="w-full table-fixed">
@@ -41,7 +41,14 @@
                                         </td>
                                         <td class=" p-2 w-60 text-ms  border">{{ $issue->details }}</td>
                                         <td class=" p-2 w-24 text-xs border">
-                                            {{ $issue->status }}
+                                            <span style="
+                                                @if ($issue->status =='Closed') background:#d80611;
+                                                @elseif($issue->status =='In Progress')  background:#d8b106;
+                                                @elseif($issue->status =='Resolved')  background:#0c7902;
+                                                @else background:#0684d8;@endif
+                                            color:white;border-radius:17px;" class="px-2">
+                                                {{$issue->status}}
+                                        </span>
                                         </td>
                                         <td class=" text-xs border w-20">
                                             {{ Carbon\Carbon::parse($issue->created_at)->format('M m, Y') }}
@@ -76,17 +83,17 @@
     <div class="py-6">
         <h1 style="color: royalblue" >Add new admins</h1>
         <x-jet-input-error for="adminname" class="mt-2 " />
-        <input wire:model="adminname" id="adminname" class=" border rounded mt-2 m-2 p-2 block w-full " 
+        <input wire:model="adminname" id="adminname" class=" border rounded mt-2 m-2 p-2 block w-full "
         placeholder="admin name">
 
         <x-jet-input-error for="adminemail" class="mt-2 " />
-        <input wire:model="adminemail" id="adminemail" class=" border rounded mt-2 m-2 p-2 block w-full " 
+        <input wire:model="adminemail" id="adminemail" class=" border rounded mt-2 m-2 p-2 block w-full "
         placeholder="admin email">
 
         <x-jet-input-error for="adminpassword" class="mt-2 " />
-        <input type="password" wire:model="adminpassword" id="adminpassword" class=" border rounded mt-2 m-2 p-2 block w-full " 
+        <input type="password" wire:model="adminpassword" id="adminpassword" class=" border rounded mt-2 m-2 p-2 block w-full "
         placeholder="password">
- 
+
         <button wire:click='addadmin' class="bg-blue-800 hover:bg-gray-700 text-white px-4 py-2 mt-2 rounded ">
             create
         </button>
@@ -132,21 +139,24 @@
                 <label for="details" class="block py-2">
                     <h1 class="text-gray-700 text-2xl">menage this issue </h1>
                     @isset($issue)
-                        
+
                     created_at {{ Carbon\Carbon::parse($issue->created_at)->format('M m, Y') }}
                     @endisset
 
                 </label>
+                    <hr>
+                    <p id="subject" class="form-textarea rounded mt-2 block w-full " rows="3"
+                        placeholder="Describe your issue">
+                        <b>subject</b>  : <br> {{$subject}}
+                    </p>
+                    <p id="details" class="form-textarea rounded mt-2 block w-full " rows="3"
+                    placeholder="Describe your issue">
+                    <b>Details issue</b>  : <br> {{$details}}
+                </p>
+
                 <hr>
-
-                <x-jet-input-error for="subject" class="mt-2 " />
-
-                <input wire:model="subject" id="subject" class=" border rounded mt-2 m-2 p-2 block w-full "
-                    placeholder="Subject">
-
-                <x-jet-input-error for="details" class="mt-2 " />
-                <textarea wire:model="details" id="details" class="form-textarea rounded mt-2 block w-full " rows="3"
-                    placeholder="Describe your issue"></textarea>
+                <b>Response</b>
+                <br>
 
                 <select name="" wire:model="status" id="">
                     <option value="Submitted">Submitted</option>
@@ -155,6 +165,16 @@
                     <option value="Closed">Closed</option>
                     <option value="Delete">Delete</option>
                 </select>
+                <br>
+                message
+                <textarea wire:model="message" id="message" class="form-textarea rounded mt-2 block w-full " rows="3"
+                    placeholder="message to the customer">
+                </textarea>
+
+                    <br>
+                    <br>
+
+
             </div>
         </x-slot>
         <x-slot name="footer">

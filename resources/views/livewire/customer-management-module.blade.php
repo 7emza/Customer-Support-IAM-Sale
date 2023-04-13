@@ -1,14 +1,14 @@
 <div>
-    
-    <div  class="flex mt-16">
-        <div class="w-full lg:w-1/2 mx-2 border   shadow-xl rounded-md p-2 mt-2 ">
+
+    <div  class="flex mt-6">
+        <div class="w-full  lg:w-1/2 mx-2 border    rounded-md p-2 mt-2 ">
             <label for="details" class="block py-2">
                 <h1 class="text-gray-700 text-2xl">post your issue </h1>
             </label>
-            <hr > 
-            
+            <hr >
+
             <x-jet-input-error for="subject" class="mt-2 " />
-            <input wire:model="subject" id="subject" class=" border rounded mt-2 m-2 p-2 block w-full " 
+            <input wire:model="subject" id="subject" class=" border rounded mt-2  p-2 block w-full "
             placeholder="Subject">
 
             <x-jet-input-error for="details" class="mt-2 " />
@@ -22,8 +22,8 @@
             </div>
 
         </div>
-        <div class="w-full lg:w-1/2 mx-2 border   shadow-xl rounded-md p-2 mt-2 ">
-            
+        <div class="w-full lg:w-1/2 mx-2 border    rounded-md p-2 mt-2 ">
+
             <label class="py-2 flex items-center ">
                 <h1 class="text-gray-700 text-2xl w-full">list recent issues  </h1>
                 <div class="relative w-full flex items-center  ">
@@ -34,7 +34,7 @@
                 </div>
             </label>
             <hr>
-            <div class="py-2" style=" height: 50vh;overflow: auto; ">
+            <div class="py-2" style=" height: 57vh;overflow: auto; ">
                 @foreach ($issues as $issue)
                 <div class=" rounded-md    relative overflow-hidden  bg-gray-100   my-2 p-4 ">
                     <label class="p-2 flex items-center border-b-2 ">
@@ -54,7 +54,7 @@
                                     </a>
                                 @endif
                                 <div style="
-                                    @if ($issue->status =='Closed') background:#d80611; 
+                                    @if ($issue->status =='Closed') background:#d80611;
                                     @elseif($issue->status =='In Progress')  background:#d8b106;
                                     @elseif($issue->status =='Resolved')  background:#0c7902;
                                     @else background:#0684d8;@endif
@@ -65,28 +65,50 @@
                         </div>
                     </label>
                     <div class="p-2">
-                        <div class="w-full">
-                            <p class="text-gray-800 text-sm font-medium mb-2">
-                                Working On:
-                            </p>
-                            <p class="text-gray-800 text-xl font-medium mb-2">
-                                {{$issue->details}}
-                            </p>
-                        
-                            
-                        </div>
-                        <div class="flex items-center justify-between my-2">
-                            <p class="text-blue-600 text-xs font-medium mb-2">
-                                created at: {{$issue->created_at}}
-                            </p>
-                        </div>
+                   <table class="w-full">
+                    <tr>
+                        <td>
+                            <div class="w-full">
+                                <p class="text-gray-800 text-sm font-medium mb-2">
+                                    Working On:
+                                </p>
+                                <p class="text-gray-800 text-xl font-medium mb-2">
+                                    {{$issue->details}}
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between my-2">
+                                <p class="text-blue-600 text-xs font-medium mb-2">
+                                    created at: {{$issue->created_at}}
+                                </p>
+                            </div>
+                        </td>
+                        @isset($issue->message)
+
+                        <td style="border-left-width: 2px;border-color:gray" class="p-2">
+                            <div class="mr-4 w-full">
+                                <p class="text-gray-800 text-sm font-medium mb-2">
+                                    Support / {{$issue->admin_id}}
+                                </p>
+                                <p class="text-gray-800 text-xl font-medium mb-2">
+                                    {{$issue->message}}
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between my-2">
+                                <p class="text-blue-600 text-xs font-medium mb-2">
+                                    updated at: {{$issue->updated_at}}
+                                </p>
+                            </div>
+                        </td>
+                        @endisset
+                    </tr>
+                   </table>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
-      
-       
+
+
     </div>
     <x-jet-dialog-modal wire:model="openToclosed" >
         <x-slot name="title">
@@ -97,13 +119,13 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-          
+
             <x-jet-button  wire:click="closed" class="bg-blue-800 hover:bg-blue-500 text-white px-4 py-2 mt-2 rounded ">
-               yes i want 
+               yes i want
             </x-jet-button>
             <x-jet-button  wire:click="$toggle('openToclosed')" wire:loading.attr="disabled"
             class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 mt-2 rounded ">
-            Cancel    
+            Cancel
             </x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
