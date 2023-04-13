@@ -1,8 +1,6 @@
 <div>
 
-
-
-    <div class="py-4 items-center   overflow-x-hidden  " style="height: 88vh; z-index:-10">
+    <div class="py-2 items-center   overflow-x-hidden  " style="vh; z-index:-10">
         <div class="max-w-7xl mx-auto px-2">
             <div class="  my-2">
                 <div class="mt-1 relative rounded-md shadow-sm">
@@ -13,13 +11,13 @@
             </div>
             <div class="p-5"></div>
 
-            <div class="   border-b border-gray-200 sm:rounded-lg  overflow-x-hidden " style="height: 65vh;">
+            <div class="   border-b border-gray-200 sm:rounded-lg  overflow-x-hidden " style="height: 56vh;">
 
                 <div class="w-full overflow-x-auto">
                     <table id="myTable" class="w-full table-fixed">
-                        <thead>
+                        <thead class="sticky">
                             <tr
-                                class="text-md  tracking-wide  text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                                class="text-md  sticky tracking-wide  text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                                 <th class=" border text-center ">Subject</th>
                                 <th class=" border text-center  ">details</th>
                                 <th class=" border text-center ">Status</th>
