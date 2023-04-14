@@ -31,8 +31,11 @@ class CustomerManagementModule extends Component
             'subject' => $this->subject,
             'details' => $this->details,
         ]);
-
-        Mail::to(auth()->user()->email)->send(new mailsupport($this->subject, $this->details));
+        try {
+            Mail::to(auth()->user()->email)->send(new mailsupport($this->subject, $this->details));
+        } catch (\Throwable $th) {
+        
+        }
         $this->details = "";
         $this->subject = "";
     }
@@ -53,11 +56,15 @@ class CustomerManagementModule extends Component
         Issue::find($this->IDtoclose)->update(['status' => 'closed']);
         foreach (User::all() as $key => $user) {
             if ($user->getAdmin) {
-                Mail::to(User::find($user->getAdmin->user_id)->email)
-                ->send(new mailsupport(
-                    'The custommer ['.auth()->user()->name.'] has closed this issue',
-                    'The custommer has closed  issue',
-                ));
+                try {
+                    Mail::to(User::find($user->getAdmin->user_id)->email)
+                    ->send(new mailsupport(
+                        'The custommer ['.auth()->user()->name.'] has closed this issue',
+                        'The custommer has closed  issue',
+                    ));
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
             }
         }
         $this->IDtoclose = null;

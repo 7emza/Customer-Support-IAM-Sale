@@ -79,12 +79,16 @@ class AdminManagementModule extends Component
             ]);
         }
 
-
-        Mail::to(User::find($issue->user_id)->email)
-        ->send(new mailsupport(
-            'Your issue [' .$this->subject.'] '.$this->status ,
-            'The custommer support has manage this issue',
-        ));
+        try {
+            //code...
+            Mail::to(User::find($issue->user_id)->email)
+            ->send(new mailsupport(
+                'Your issue [' .$this->subject.'] '.$this->status ,
+                'The custommer support has manage this issue',
+            ));
+        } catch (\Throwable $th) {
+    
+        }
 
         $this->details="";
         $this->subject="";
